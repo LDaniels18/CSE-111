@@ -1,4 +1,4 @@
---test
+--test - done
 
 select count(c_custkey) from customer
 inner join region on r_regionkey is n_regionkey
