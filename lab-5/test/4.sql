@@ -1,4 +1,4 @@
---test
+--test - done
 
 -- select n_name, count(c_custkey), count(s_suppkey)  from customer
 -- inner join region on r_regionkey is n_regionkey
