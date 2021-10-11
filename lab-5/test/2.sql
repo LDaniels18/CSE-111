@@ -1,4 +1,4 @@
---test
+--test - done
 select r_name, count(s_suppkey) from supplier 
 inner join nation on s_nationkey = n_nationkey
 inner join region on n_regionkey = r_regionkey
