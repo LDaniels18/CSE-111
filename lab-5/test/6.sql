@@ -1,4 +1,4 @@
---test
+--test done
 select p_mfgr from part
 inner join partsupp on ps_partkey is p_partkey
 inner join supplier on s_suppkey is ps_suppkey
