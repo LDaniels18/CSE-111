@@ -1,9 +1,8 @@
---test
-select r_name, count(distinct c_custkey) from customer
-inner join nation on n_nationkey is c_nationkey
-inner join region on r_regionkey is n_regionkey
-inner join orders on o_custkey is c_custkey
-where c_acctbal < (select avg(c_acctbal) from customer)
--- and c_custkey in (select o_custkey from orders)
+--test DONE
+SELECT r_name as regions, count(DISTINCT c_name) AS count
+FROM customer orders
+Inner JOIN nation ON n_nationkey IS c_nationkey
+Inner JOIN region ON r_regionkey IS n_regionkey
+where c_acctbal < (SELECT avg(c_acctbal) FROM customer) AND NOT c_custkey IN (SELECT o_custkey FROM orders)
 group by r_name;
 
