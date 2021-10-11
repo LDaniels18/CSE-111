@@ -1,4 +1,4 @@
---test
+--test done
 select o_orderpriority, count(p_partkey) from part
 inner join lineitem on l_partkey is p_partkey
 inner join orders on o_orderkey is l_orderkey
