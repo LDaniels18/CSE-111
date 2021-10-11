@@ -1,33 +1,14 @@
---test -- need to finish
- select p_name from part
- inner join supplier on s_suppkey = ps_suppkey
- inner join partsupp on ps_partkey = p_partkey
- INNER JOIN nation on n_nationkey = s_nationkey
- where n_name is 'UNITED STATES'
- 
-
-
-
-
-
- group by p_name
- HAVING (ps_supplycost * ps_availqty) 
- limit 1;
-
-
- select p_name 
- from part
- LIMIT 1;
- 
- 
-
-
-select Sum(ps_supplycost * ps_availqty) as total, p_name
-from partsupp
-inner join part on ps_partkey is p_partkey
-inner join supplier on s_suppkey = ps_suppkey
-inner join nation on n_nationkey = s_nationkey
-where n_name is 'UNITED STATES'
-Group BY p_name;
---HAVING total
---limit 1;
+--test -- DONE
+ SELECT p_name 
+ FROM part
+ INNER JOIN supplier ON s_suppkey = ps_suppkey
+ INNER JOIN partsupp ON ps_partkey = p_partkey
+ INNER JOIN nation ON n_nationkey = s_nationkey
+ where n_name IS 'UNITED STATES'
+ ORDER BY (ps_supplycost * ps_availqty) DESC
+ LIMIT (SELECT count(DISTINCT ps_partkey)/100 
+ FROM partsupp
+ INNER JOIN supplier ON s_suppkey = ps_suppkey
+ INNER JOIN part ON p_partkey = ps_partkey
+ INNER JOIN nation ON n_nationkey = s_nationkey
+ WHERE n_name IS 'UNITED STATES');
