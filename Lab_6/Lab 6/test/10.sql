@@ -1,10 +1,7 @@
-with smallAmount as(
-select r_name from region
-inner join customer on c_nationkey is s_nationkey
-inner join supplier on s_nationkey is n_nationkey
-inner join nation on n_regionkey is r_regionkey
-inner join lineitem on l_suppkey is s_suppkey
-where l_extendedprice is (select min(l_extendedprice) from lineitem))
-
-select distinct smallAmount.r_name
-from smallAmount;
+SELECT r_name FROM region
+INNER JOIN customer ON c_nationkey = s_nationkey
+INNER JOIN supplier ON s_nationkey = n_nationkey
+INNER JOIN nation ON n_regionkey = r_regionkey
+INNER JOIN lineitem ON l_suppkey = s_suppkey
+WHERE l_extendedprice = (SELECT min(l_extendedprice) FROM lineitem)
+GROUP BY r_name;
