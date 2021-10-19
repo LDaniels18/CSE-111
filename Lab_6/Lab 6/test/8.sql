@@ -1,7 +1,10 @@
-select distinct c_name from region, orders
-inner join supplier on s_nationkey is n_nationkey
-inner join nation on n_regionkey is r_regionkey
-inner join customer on c_custkey is o_custkey
-where r_name is 'AMERICA'
-group by c_name
-having count(o_orderkey) >= 1;
+--Find  how  many  distinct  customers  have  at  least  one  order  supplied  exclusively  by  suppliers  from AMERICA.
+
+SELECT COUNT(DISTINCT c_name)
+FROM orders, customer
+WHERE c_custkey = o_custkey
+AND o_orderkey 
+NOT IN (SELECT DISTINCT(o_orderkey)
+FROM supplier, region, nation, lineitem, orders
+WHERE r_regionkey = n_regionkey
+AND n_nationkey = s_nationkey AND s_suppkey = l_suppkey AND o_orderkey = l_orderkey AND r_name NOT IN ('AMERICA'));
