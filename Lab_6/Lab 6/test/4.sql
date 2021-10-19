@@ -1,7 +1,9 @@
-select count(results.s_suppkey)
-from (select s_suppkey from supplier
-inner join partsupp on ps_suppkey is s_suppkey
-inner join part on ps_partkey is p_partkey
-inner join nation on n_nationkey is s_nationkey
-where n_name is "UNITED STATES"
-group by s_suppkey having count(distinct p_partkey) >= 40) as results;
+SELECT count(results.s_suppkey)
+FROM (SELECT s_suppkey 
+FROM supplier
+INNER JOIN partsupp ON ps_suppkey = s_suppkey
+INNER JOIN part ON ps_partkey = p_partkey
+INNER JOIN nation ON n_nationkey = s_nationkey
+WHERE n_name = "UNITED STATES"
+GROUP BY s_suppkey
+HAVING count(DISTINCT p_partkey) >= 40) AS results;
