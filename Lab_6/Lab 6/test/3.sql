@@ -1,6 +1,8 @@
-select count(results.p_partkey) from (select part.p_partkey from supplier
-inner join partsupp on ps_suppkey is s_suppkey
-inner join part on ps_partkey is p_partkey
-inner join nation on n_nationkey is s_nationkey
-where n_name is "UNITED STATES"
-group by p_partkey having count(distinct s_suppkey) is 2) as results;
+SELECT count(results.p_partkey) 
+FROM (SELECT part.p_partkey 
+FROM supplier
+INNER JOIN partsupp ON ps_suppkey = s_suppkey
+INNER JOIN part ON ps_partkey = p_partkey
+INNER JOIN nation ON n_nationkey = s_nationkey
+WHERE n_name = "UNITED STATES"
+GROUP BY p_partkey having count(DISTINCT s_suppkey) = 2) AS results;
