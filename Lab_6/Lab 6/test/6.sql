@@ -1,5 +1,6 @@
-select s_name, c_name, min(o_totalprice) from orders
-inner join customer on c_custkey is o_custkey
-inner join supplier on s_suppkey is l_suppkey
-inner join lineitem on l_orderkey is o_orderkey
-where o_orderstatus is 'F';
+SELECT s_name, c_name, min(o_totalprice) 
+FROM orders
+INNER JOIN customer ON c_custkey = o_custkey
+INNER JOIN supplier ON s_suppkey = l_suppkey
+INNER JOIN lineitem ON l_orderkey = o_orderkey
+WHERE o_orderstatus = 'F';
