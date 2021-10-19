@@ -1,13 +1,13 @@
-with lessThan as
+WITH lessThan AS
 (
-    select s_suppkey from nation
-    inner join supplier on s_suppkey is l_suppkey
-    inner join lineitem on l_orderkey is o_orderkey
-    inner join customer on c_nationkey is n_nationkey
-    inner join orders on o_custkey is c_custkey
-    where n_name in ('GERMANY', 'FRANCE')
-    group by s_suppkey
-    HAVING count(distinct o_orderkey) < 50
+SELECT s_suppkey FROM nation
+INNER JOIN supplier ON s_suppkey = l_suppkey
+INNER JOIN lineitem ON l_orderkey = o_orderkey
+INNER JOIN customer ON c_nationkey = n_nationkey
+INNER JOIN orders ON o_custkey = c_custkey
+WHERE n_name IN ('GERMANY', 'FRANCE')
+GROUP BY s_suppkey
+HAVING count(DISTINCT o_orderkey) < 50
 )
-select count(*)
-from lessThan;
+SELECT count(*)
+FROM lessThan;
