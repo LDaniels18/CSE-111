@@ -1,6 +1,7 @@
-select n_name, total(l_extendedprice) as totalPrice
-from nation, customer, orders, lineitem
-where c_nationkey is n_nationkey and c_custkey is o_custkey 
-and o_orderkey is l_orderkey and strftime('%Y', l_shipdate) is '1994'
-group by n_name
-order by totalPrice desc;
+
+SELECT n_name AS NationName
+FROM(SELECT n_name, sum(l_extendedprice)
+FROM nation
+INNER JOIN supplier ON s_nationkey = n_nationkey
+INNER JOIN lineitem ON l_suppkey = s_suppkey
+WHERE l_shipdate LIKE '1994%');
