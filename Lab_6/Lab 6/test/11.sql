@@ -1,8 +1,7 @@
-with minCus as(
-select n_name, count(c_custkey) as totalCus from nation
-inner join customer on c_nationkey is n_nationkey
-group by n_name
-order by totalCus asc limit 1)
 
-select minCus.n_name
-from minCus;
+SELECT n_name 
+FROM (SELECT n_name, min(Customers)
+FROM (SELECT n_name, count(c_custkey) AS Customers
+FROM nation
+INNER JOIN customer ON c_nationkey = n_nationkey
+GROUP BY n_name));
