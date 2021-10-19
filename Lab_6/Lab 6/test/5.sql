@@ -1,5 +1,6 @@
-select count(distinct s_suppkey) from supplier
-inner join partsupp on ps_suppkey is s_suppkey
-inner join part on ps_partkey is p_partkey
-inner join nation on n_nationkey is s_nationkey
-where p_retailprice is (select max(p_retailprice) from part);
+SELECT count(DISTINCT s_suppkey) 
+FROM supplier
+INNER JOIN partsupp ON ps_suppkey = s_suppkey
+INNER JOIN part ON ps_partkey = p_partkey
+INNER JOIN nation ON n_nationkey = s_nationkey
+WHERE p_retailprice = (SELECT max(p_retailprice) FROM part);
