@@ -1,10 +1,10 @@
 --test - done
-select r_name, count(s_suppkey) from supplier 
-inner join nation on s_nationkey = n_nationkey
-inner join region on n_regionkey = r_regionkey
-inner join(select r_name as inner_r_name, avg(s_acctbal) as r_avg_acctbacl from supplier
-inner join nation on s_nationkey = n_nationkey
-inner join region on n_regionkey = r_regionkey
-group by r_name) as avg_table on avg_table.inner_r_name = r_name
-where s_acctbal < avg_table.r_avg_acctbacl
-group by r_name;
+SELECT r_name, count(s_suppkey) FROM supplier 
+INNER JOIN nation ON s_nationkey = n_nationkey
+INNER JOIN region ON n_regionkey = r_regionkey
+INNER JOIN(SELECT r_name AS regionTable, avg(s_acctbal) AS r_avg_acctbacl FROM supplier
+INNER JOIN nation ON s_nationkey = n_nationkey
+INNER JOIN region ON n_regionkey = r_regionkey
+GROUP BY r_name) AS avg_table ON avg_table.regionTable = r_name
+WHERE s_acctbal < avg_table.r_avg_acctbacl
+GROUP BY r_name;

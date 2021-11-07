@@ -1,23 +1,23 @@
 --test - done
 
--- select n_name, count(c_custkey), count(s_suppkey)  from customer
--- inner join region on r_regionkey is n_regionkey
--- inner join nation on n_nationkey is s_nationkey
--- inner join supplier on s_nationkey is c_nationkey
--- where r_name is 'AFRICA'
--- group by n_name;
+-- SELECT n_name, count(c_custkey), count(s_suppkey)  FROM customer
+-- INNER JOIN region on r_regionkey IS n_regionkey
+-- INNER JOIN nation on n_nationkey IS s_nationkey
+-- INNER JOIN supplier on s_nationkey IS c_nationkey
+-- WHERE r_name IS 'AFRICA'
+-- GROUP BY n_name;
 
-select cust_n_name, cust_counts, supp_counts from (select n_name as cust_n_name,
-count(c_custkey) as cust_counts from customer
-	inner join nation on c_nationkey is n_nationkey
-	inner join region on n_regionkey is r_regionkey
-	where r_name is 'AFRICA'
-	group by n_name
-)as t_cust_counts join(
-	select n_name as supp_n_name,
-	count(s_suppkey) as supp_counts from supplier
-	inner join nation on s_nationkey is n_nationkey
-	inner join region on n_regionkey is r_regionkey
-	where r_name is 'AFRICA'
-	group by n_name
-) as t_supp_counts on cust_n_name is supp_n_name;
+SELECT cust_n_name, cust_counts, supp_counts FROM (SELECT n_name AS cust_n_name,
+count(c_custkey) AS cust_counts FROM customer
+INNER JOIN nation on c_nationkey IS n_nationkey
+INNER JOIN region on n_regionkey IS r_regionkey
+WHERE r_name IS 'AFRICA'
+GROUP BY n_name)
+AS t_cust_counts 
+join(SELECT n_name AS supp_n_name,
+count(s_suppkey) AS supp_counts FROM supplier
+INNER JOIN nation on s_nationkey IS n_nationkey
+INNER JOIN region on n_regionkey IS r_regionkey
+WHERE r_name IS 'AFRICA'
+GROUP BY n_name) 
+AS t_supp_counts on cust_n_name IS supp_n_name;

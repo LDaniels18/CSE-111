@@ -1,0 +1,10 @@
+Query 1: FAIL
+Query 2: FAIL
+Query 3: FAIL
+Query 4: FAIL
+Query 5: FAIL
+Query 6: FAIL
+Query 7: FAIL
+Query 8: FAIL
+Query 9: FAIL
+Query 10: FAIL

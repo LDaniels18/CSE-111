@@ -1,6 +1,6 @@
 --test done
-select o_orderpriority, count(p_partkey) from part
-inner join lineitem on l_partkey is p_partkey
-inner join orders on o_orderkey is l_orderkey
-where strftime('%Y', o_orderdate) is '1997' and l_receiptdate > l_commitdate
-group by o_orderpriority;
+SELECT o_orderpriority, count(p_partkey) FROM part
+INNER JOIN lineitem ON l_partkey IS p_partkey
+INNER JOIN orders ON o_orderkey IS l_orderkey
+WHERE strftime('%Y', o_orderdate) IS '1997' AND l_receiptdate > l_commitdate
+GROUP BY o_orderpriority;
