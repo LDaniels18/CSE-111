@@ -8,3 +8,5 @@ where l_orderkey = o_orderkey
     and o_orderpriority='3-MEDIUM'
     and n_name = 'CANADA'
 group by year;
+
+.expert

@@ -1,0 +1,4 @@
+--EQP-- 0,0,0,SEARCH TABLE orders USING INDEX orders_idx_o_orderpriority_o_orderdate (o_orderpriority=? AND o_orderdate>? AND o_orderdate<?)
+--EQP-- 0,1,2,SEARCH TABLE nation USING INDEX nation_idx_n_name (n_name=?)
+--EQP-- 0,2,1,SEARCH TABLE customer USING COVERING INDEX customer_idx_c_nationkey_c_custkey (c_nationkey=? AND c_custkey=?)
+86

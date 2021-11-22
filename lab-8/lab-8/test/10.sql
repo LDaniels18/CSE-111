@@ -7,3 +7,5 @@ where o_custkey=c_custkey and
     r_regionkey=n_regionkey and
     r_name='AMERICA' and
     o_orderdate>='1996-01-01' and o_orderdate<='1996-12-31';
+
+.expert

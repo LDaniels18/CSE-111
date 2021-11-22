@@ -8,3 +8,4 @@ where o_custkey=c_custkey
     and o_orderstatus='F'
 group by r_name;
 
+.expert

@@ -5,3 +5,5 @@ from supplier, nation
 where s_nationkey = n_nationkey
 group by n_name
 having cnt > 5;
+
+.expert
